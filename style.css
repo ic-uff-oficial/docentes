@@ -5,7 +5,7 @@
 }
 
 .professor-item label:first-child {
-    width: 200px; /* Set a fixed width for the professor names */
+    width: 300px; /* Set a fixed width for the professor names */
     margin-right: 15px; /* Space between the name and the checkboxes */
     white-space: nowrap; /* Prevents wrapping */
     overflow: hidden; /* Hides overflow text */
