@@ -15,7 +15,7 @@ fetch('professors.json')
             const checkboxGroup = document.createElement('div');
             checkboxGroup.className = 'checkbox-group';
 
-            ['Present', 'Absent', 'Justified'].forEach(status => {
+            ['Present', 'Vacation', 'Justified'].forEach(status => {
                 const checkboxLabel = document.createElement('label');
                 checkboxLabel.textContent = status;
 
@@ -38,28 +38,44 @@ document.getElementById('attendance-form').addEventListener('submit', function(e
     event.preventDefault(); // Prevent form submission
 
     const presentProfessors = [];
-    const absentProfessors = [];
+    const vacationProfessors = [];
     const justifiedProfessors = [];
+
+    const allProfessors = [];
 
     const checkboxes = document.querySelectorAll('#professors-list input[type="checkbox"]');
 
     checkboxes.forEach(checkbox => {
+        const [professorName, status] = checkbox.name.split('-');
+
+        if (!allProfessors.includes(professorName)) {
+            allProfessors.push(professorName);
+        }
+
         if (checkbox.checked) {
-            const [professorName, status] = checkbox.name.split('-');
             if (status === 'present') {
                 presentProfessors.push(professorName);
-            } else if (status === 'absent') {
-                absentProfessors.push(professorName);
+            } else if (status === 'vacation') {
+                vacationProfessors.push(professorName);
             } else if (status === 'justified') {
                 justifiedProfessors.push(professorName);
             }
         }
     });
 
+    // Merge vacation and justified professors without repetition
+    const finalJustifiedProfessors = Array.from(new Set([...justifiedProfessors, ...vacationProfessors]));
+
+    // Find absent professors: those who are not in present or justified lists
+    const absentProfessors = allProfessors.filter(professor => 
+        !presentProfessors.includes(professor) && !finalJustifiedProfessors.includes(professor)
+    );
+
     const reportText = `
 Present professors: ${presentProfessors.join(', ')}
+Vacation professors: ${vacationProfessors.join(', ')}
+Justified professors: ${finalJustifiedProfessors.join(', ')}
 Absent professors: ${absentProfessors.join(', ')}
-Justified professors: ${justifiedProfessors.join(', ')}
     `.trim();
 
     document.getElementById('attendance-report').value = reportText;

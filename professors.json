@@ -2,6 +2,9 @@
     "professors": [
         { "name": "Professor A" },
         { "name": "Professor B" },
-        { "name": "Professor C" }
+        { "name": "Professor C" },
+        { "name": "Professor D" },
+        { "name": "Professor E" },
+        { "name": "Professor F" }
     ]
 }
