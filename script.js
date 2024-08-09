@@ -15,7 +15,7 @@ fetch('professors.json')
             const checkboxGroup = document.createElement('div');
             checkboxGroup.className = 'checkbox-group';
 
-            ['Present', 'Vacation', 'Justified'].forEach(status => {
+            ['Presente', 'Ferias', 'Justificou'].forEach(status => {
                 const checkboxLabel = document.createElement('label');
                 checkboxLabel.textContent = status;
 
@@ -31,7 +31,7 @@ fetch('professors.json')
             professorsList.appendChild(professorDiv);
         });
     })
-    .catch(error => console.error('Error loading professors:', error));
+    .catch(error => console.error('Erro carregando lista de docentes:', error));
 
 // Handle form submission
 document.getElementById('attendance-form').addEventListener('submit', function(event) {
@@ -53,11 +53,11 @@ document.getElementById('attendance-form').addEventListener('submit', function(e
         }
 
         if (checkbox.checked) {
-            if (status === 'present') {
+            if (status === 'presente') {
                 presentProfessors.push(professorName);
-            } else if (status === 'vacation') {
+            } else if (status === 'ferias') {
                 vacationProfessors.push(professorName);
-            } else if (status === 'justified') {
+            } else if (status === 'justificou') {
                 justifiedProfessors.push(professorName);
             }
         }
@@ -72,9 +72,9 @@ document.getElementById('attendance-form').addEventListener('submit', function(e
     );
 
     const reportText = `
-Present professors: ${presentProfessors.join(', ')}
-Vacation and Justified professors: ${finalJustifiedProfessors.join(', ')}
-Absent professors: ${absentProfessors.join(', ')}
+Estavam presentes os seguintes professores do Quadro Permanente, vinculados ao TCC: ${presentProfessors.join(', ')}
+Justificaram a ausência, os professores: ${finalJustifiedProfessors.join(', ')}
+Não justificaram a ausência, os professores: ${absentProfessors.join(', ')}
     `.trim();
 
     document.getElementById('attendance-report').value = reportText;
