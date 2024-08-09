@@ -20,7 +20,7 @@ fetch('professors.json')
                 checkboxLabel.textContent = status;
 
                 const checkbox = document.createElement('input');
-                checkbox.type = 'checkbox';
+                checkbox.type = 'radio';
                 checkbox.name = `${professor.name}-${status.toLowerCase()}`;
 
                 checkboxLabel.appendChild(checkbox);
