@@ -73,8 +73,7 @@ document.getElementById('attendance-form').addEventListener('submit', function(e
 
     const reportText = `
 Present professors: ${presentProfessors.join(', ')}
-Vacation professors: ${vacationProfessors.join(', ')}
-Justified professors: ${finalJustifiedProfessors.join(', ')}
+Vacation and Justified professors: ${finalJustifiedProfessors.join(', ')}
 Absent professors: ${absentProfessors.join(', ')}
     `.trim();
 
