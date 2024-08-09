@@ -1,20 +1,16 @@
 .professor-item {
-    display: flex;
+    display: grid;
+    grid-template-columns: 250px auto auto auto; /* Fixed width for the name column, and auto for checkboxes */
     align-items: center;
     margin-bottom: 10px;
 }
 
-.professor-item label:first-child {
-    width: 300px; /* Set a fixed width for the professor names */
-    margin-right: 15px; /* Space between the name and the checkboxes */
-    white-space: nowrap; /* Prevents wrapping */
-    overflow: hidden; /* Hides overflow text */
-    text-overflow: ellipsis; /* Adds ellipsis (...) for overflow text */
+.professor-item label {
+    margin-right: 10px;
 }
 
 .checkbox-group {
-    display: flex;
-    gap: 10px;
+    display: contents; /* Allows grid layout to control positioning of items */
 }
 
 .checkbox-group label {
